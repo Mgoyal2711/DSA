@@ -1,40 +1,42 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        // int x = digits.length;
-        // int[] arr = new int[x + 1];
-        // int n = arr.length;
-        // for (int i = 0; i < x; i++) {
-        //     if (digits[x - 1] < 9) {
-        //         digits[x - 1] = digits[x - 1] + 1;
+        // int n = digits.length;
+        // for(int i=n-1; i>=0; i--){
+        //     if (digits[i] < 9) {
+        //         digits[i] = digits[i] + 1;
         //         return digits;
-        //     }
-        //     if (digits[x - 1] == 9) {
-        //         for (int j = 0; i < arr.length; j++) {
-        //             arr[i] = digits[i];
-        //         }
-        //         int n = arr.length;
-        //         arr[n - 1] = 0;
-        //         arr[n - 2] = 1;
-        //         return arr;
-        //     }
+        //     }    
+        //     digits[i] = 0;
         // }
-        // if(digits[x-1] < 9){
-        //     return digits;
-        // }else {
-        //     return arr;
-        // }
-
-        int n = digits.length;
-        for(int i=n-1; i>=0; i--){
-            if (digits[i] < 9) {
-                digits[i] = digits[i] + 1;
-                return digits;
-            }    
-            digits[i] = 0;
-        }
-        int[] arr = new int[n + 1];
-        arr[0] = 1;
-        return arr;
+        // int[] arr = new int[n + 1];
+        // arr[0] = 1;
+        // return arr;
         
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for(int num : digits){
+            list.add(num);
+        }
+
+        for(int i=list.size()-1; i>=0; i--){
+            if(list.get(i)<9){
+                list.set(i, list.get(i)+1);
+
+                int[] arr = new int[list.size()];
+                for(int j=0; j<list.size(); j++){
+                    arr[j] = list.get(j); 
+                }
+
+                return arr;
+            }
+            list.set(i,0);
+        }
+
+        list.add(0,1);
+        int[] arr = new int[list.size()];
+        for(int i=0; i<list.size(); i++){
+            arr[i] = list.get(i);
+        }
+        return arr;
     }
 }
